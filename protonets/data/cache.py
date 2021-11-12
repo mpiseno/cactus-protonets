@@ -100,7 +100,8 @@ def load(opt, splits):
         split_filename = [filename for filename in filenames if opt['data.dataset'] in filename and split in filename]
         assert len(split_filename) == 1
         split_filename = os.path.join(encodings_dir, split_filename[0])
-        split_data = np.load(split_filename)
+
+        split_data = np.load(split_filename, allow_pickle=True).item()
         images = split_data['X']    # (index, H, W, C)
         labels = split_data['Y']
         encodings = split_data['Z']
