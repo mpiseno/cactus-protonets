@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 device=cpu
 dataset=miniimagenet
-date=20181003
-way=5
+date=20211128
+way=3
 shot=1
 query=15
 encoder=swav
-clusters=100
+clusters=30
 partitions=20
 hdim=64
-train_mode=ground_truth
+train_mode=kmeans
 python scripts/train/few_shot/run_train.py \
     --data.dataset ${dataset} \
     --data.way ${way} \
@@ -27,7 +27,7 @@ python scripts/train/few_shot/run_train.py \
     --data.partitions ${partitions} \
     --model.x_dim 3,84,84 \
     --model.hid_dim ${hdim} \
-    --train.epochs 600 \
+    --train.epochs 5 \
     --log.exp_dir log \
     --log.date ${date}
 train_mode=kmeans
